@@ -1,0 +1,1 @@
+export type UserRole = 'utilisateur' | 'centre_appel' | 'admin';

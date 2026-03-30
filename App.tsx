@@ -11,8 +11,12 @@ import PlanningScreen from "./src/screens/PlanningScreen";
 import AccountScreen from "./src/screens/AccountScreen";
 import FormationScreen from "./src/screens/FormationScreen";
 import AlertsScreen from "./src/screens/AlertsScreen";
+import Header from "./src/components/Header";
+import {MOCK_USERS, UserContext} from "./src/constants/mockUsers";
 
 const Tab = createBottomTabNavigator()
+
+const CURRENT_USER = MOCK_USERS.admin
 
 function AppNavigator() {
     const insets = useSafeAreaInsets();
@@ -21,7 +25,7 @@ function AppNavigator() {
         <NavigationContainer>
             <Tab.Navigator
             screenOptions={{
-                headerShown: true,
+                header: () => <Header />,
                 tabBarActiveTintColor: '#6200EE',
                 tabBarInactiveTintColor: '#888',
                 tabBarStyle: {
@@ -40,9 +44,12 @@ function AppNavigator() {
 }
 
 export default function App() {
+    // @ts-ignore
     return(
         <SafeAreaProvider>
-            <AppNavigator />
+            <UserContext.Provider value={CURRENT_USER}>
+                <AppNavigator />
+            </UserContext.Provider>
         </SafeAreaProvider>
     )
 };

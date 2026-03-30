@@ -1,36 +1,25 @@
 import React from "react";
+import {NavigationContainer} from "@react-navigation/native";
+import {FlatList, View, Text} from "react-native";
+import {createStackNavigator} from "@react-navigation/native-stack"
+
+const Stack = createStackNavigator();
+
+function Test() {
+    return (
+        <View>
+            <Text>Open up App</Text>
+        </View>
+    )
+}
 
 function NavBar() {
     return (
-        <nav className="main-nav">
-            <ul className="nav-list">
-                <li className="nav-list-item">
-                    <a className="nav-link">
-                        <p> Test Page </p>
-                    </a>
-                </li>
-                <li className="nav-list-item">
-                    <a className="nav-link">
-                        <img />
-                    </a>
-                </li>
-                <li className="nav-list-item">
-                    <a className="nav-link">
-                        <img />
-                    </a>
-                </li>
-                <li className="nav-list-item">
-                    <a className="nav-link">
-                        <img />
-                    </a>
-                </li>
-                <li className="nav-list-item">
-                    <a className="nav-link">
-                        <img />
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name={"Home"} component={Test}/>
+            </Stack.Navigator>
+        </NavigationContainer>
     )
 }
 

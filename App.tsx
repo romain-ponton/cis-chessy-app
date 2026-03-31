@@ -1,65 +1,123 @@
-import { StatusBar } from 'expo-status-bar';
-import React from "react";
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import Svg, { Rect } from 'react-native-svg';
+import { COLORS} from "./src/constants/colors";
+import BottomNav from "./src/components/BottomNav";
+import LoginPage from "./src/screens/LoginPage";
+import HomePage from "./src/screens/HomePage";
+import PlanningPage from "./src/screens/PlanningPage";
+import AlertsPage from "./src/screens/AlertsPage";
+import TrainingPage from "./src/screens/TrainingPage";
+import type { PageName} from "./src/types/types";
 
-import { NavigationContainer} from "@react-navigation/native";
-import { createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+const App: React.FC = () => {
+    const [page, setPage] = useState<PageName>('login');
+    const [loggedIn, setLoggedIn] = useState<boolean>(false);
 
-import {SafeAreaProvider, useSafeAreaInsets} from "react-native-safe-area-context";
+    const handleLogin = () => {
+        setLoggedIn(true);
+        setPage('home');
+    };
 
-import HomeScreen from "./src/screens/HomeScreen";
-import PlanningScreen from "./src/screens/PlanningScreen";
-import AccountScreen from "./src/screens/AccountScreen";
-import FormationScreen from "./src/screens/FormationScreen";
-import AlertsScreen from "./src/screens/AlertsScreen";
-import Header from "./src/components/Header";
-import {MOCK_USERS, UserContext} from "./src/constants/mockUsers";
+    const renderPage = () => {
+        switch (page) {
+            case 'login':
+                return <LoginPage onLogin={handleLogin} />;
+            case 'home':
+                return <HomePage />;
+            case 'planning':
+                return <PlanningPage />;
+            case 'alerts':
+                return <AlertsPage />;
+            case 'training':
+                return <TrainingPage />;
+            default:
+                return <HomePage />;
+        }
+    };
 
-const Tab = createBottomTabNavigator()
+    return (
+        <View style={styles.appContainer}>
+            <StatusBar barStyle="dark-content" />
 
-const CURRENT_USER = MOCK_USERS.admin
+            {/* Phone frame wrapper */}
+            <View style={styles.phoneFrame}>
+                {/* Status bar */}
+                <View style={styles.statusBar}>
+                    <Text style={styles.statusBarTime}>9:41</Text>
+                    <View style={styles.notch} />
+                    <View style={styles.statusBarIcons}>
+                        <Svg width={16} height={12} viewBox="0 0 16 12">
+                            <Rect x={0} y={3} width={3} height={9} rx={1} fill={COLORS.text} />
+                            <Rect x={4.5} y={2} width={3} height={10} rx={1} fill={COLORS.text} />
+                            <Rect x={9} y={0} width={3} height={12} rx={1} fill={COLORS.text} />
+                            <Rect x={13.5} y={1} width={2.5} height={4} rx={0.5} fill={COLORS.textLight} />
+                        </Svg>
+                    </View>
+                </View>
 
-function AppNavigator() {
-    const insets = useSafeAreaInsets();
+                {/* Page content */}
+                <View style={styles.pageContent}>{renderPage()}</View>
 
-  return (
-        <NavigationContainer>
-            <Tab.Navigator
-            screenOptions={{
-                header: () => <Header />,
-                tabBarActiveTintColor: '#6200EE',
-                tabBarInactiveTintColor: '#888',
-                tabBarStyle: {
-                    height: 60 + insets.bottom,
-                    paddingBottom: insets.bottom || 8
-                },
-            }}>
-                <Tab.Screen name="Home" component={HomeScreen} />
-                <Tab.Screen name="Planning" component={PlanningScreen} />
-                <Tab.Screen name="Account" component={AccountScreen} />
-                <Tab.Screen name="Formation" component={FormationScreen} />
-                <Tab.Screen name="Alerts" component={AlertsScreen} />
-            </Tab.Navigator>
-        </NavigationContainer>
-  );
-}
-
-export default function App() {
-    // @ts-ignore
-    return(
-        <SafeAreaProvider>
-            <UserContext.Provider value={CURRENT_USER}>
-                <AppNavigator />
-            </UserContext.Provider>
-        </SafeAreaProvider>
-    )
+                {/* Bottom navigation (hidden on login screen) */}
+                {loggedIn && <BottomNav page={page} setPage={setPage} />}
+            </View>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    appContainer: {
+        flex: 1,
+        backgroundColor: '#E8EEF6',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    phoneFrame: {
+        width: 390,
+        height: 844,
+        backgroundColor: COLORS.surface,
+        borderRadius: 50,
+        overflow: 'hidden',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 30 },
+        shadowOpacity: 0.25,
+        shadowRadius: 80,
+        elevation: 30,
+    },
+    statusBar: {
+        height: 50,
+        backgroundColor: COLORS.surface,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 24,
+        zIndex: 10,
+    },
+    statusBarTime: {
+        fontSize: 14,
+        fontWeight: '700',
+        color: COLORS.text,
+    },
+    notch: {
+        position: 'absolute',
+        left: '50%',
+        top: 10,
+        width: 100,
+        height: 28,
+        backgroundColor: '#0a0a1a',
+        borderRadius: 20,
+        transform: [{ translateX: -50 }],
+    },
+    statusBarIcons: {
+        flexDirection: 'row',
+        gap: 6,
+        alignItems: 'center',
+    },
+    pageContent: {
+        flex: 1,
+        backgroundColor: COLORS.surfaceAlt,
+    },
 });
+
+export default App;

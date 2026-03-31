@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { COLORS } from '../constants/colors';
-import { CALENDAR_DAYS} from "../constants/mockData2";
-import { Card, SectionTitle, LogoMark } from "../constants/ui";
-import type { CalendarDay} from "../types/types";
+import { COLORS } from '../../constants/colors';
+import { CALENDAR_DAYS} from "../../constants/mockData";
+import { Card, SectionTitle, LogoMark } from "../../constants/ui";
+import type { CalendarDay} from "../../types/types";
 
 const SERVICE_TIMES = ['06:00', '07:00', '08:00', '12:00', '13:00', '19:00', '20:00'];
 

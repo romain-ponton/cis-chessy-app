@@ -4,10 +4,10 @@ import Svg, { Rect } from 'react-native-svg';
 import { COLORS} from "./src/constants/colors";
 import BottomNav from "./src/components/BottomNav";
 import LoginPage from "./src/screens/LoginPage";
-import HomePage from "./src/screens/HomePage";
-import PlanningPage from "./src/screens/PlanningPage";
-import AlertsPage from "./src/screens/AlertsPage";
-import TrainingPage from "./src/screens/TrainingPage";
+import HomePage from "./src/screens/user/HomePage";
+import PlanningPage from "./src/screens/user/PlanningPage";
+import AlertsPage from "./src/screens/user/AlertsPage";
+import TrainingPage from "./src/screens/user/TrainingPage";
 import type { PageName} from "./src/types/types";
 
 const App: React.FC = () => {

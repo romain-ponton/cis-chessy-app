@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { LinearGradient } from "react-native-svg";
-import { COLORS } from '../constants/colors';
+import { COLORS } from '../../constants/colors';
 import {
     MOCK_USER,
     MOCK_SERVICE,
     MOCK_ALERTS,
     MOCK_TRAININGS,
     MOCK_DOCS
-} from "../constants/mockData2";
+} from "../../constants/mockData";
 import {
     Avatar,
     Badge,
@@ -16,8 +16,8 @@ import {
     Card,
     SectionTitle,
     alertColor
-} from "../constants/ui";
-import { BellIcon, DownloadIcon } from '../components/icons';
+} from "../../constants/ui";
+import { BellIcon, DownloadIcon } from '../../components/icons';
 
 const HomePage: React.FC = () => {
     const topAlert = MOCK_ALERTS[0];

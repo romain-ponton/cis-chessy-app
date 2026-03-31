@@ -1,16 +1,35 @@
-import { create } from 'zustand';
-import { UserRole } from '../types/role';
+import { create } from 'zustand'
+import { Role } from '../constants/mockData'
+
+type AuthUser = {
+  id: string
+  firstName: string
+  lastName: string
+  email: string
+  role: Role
+  token?: string
+}
 
 type AuthState = {
-  isAuthenticated: boolean;
-  role: UserRole;
-  login: (role: UserRole) => void;
-  logout: () => void;
-};
+  user: AuthUser | null
+  accessToken: string | null
+  setSession: (payload: { user: AuthUser; accessToken?: string | null }) => void
+  logout: () => void
+}
 
 export const useAuthStore = create<AuthState>((set) => ({
-  isAuthenticated: false,
-  role: 'utilisateur',
-  login: (role) => set({ isAuthenticated: true, role }),
-  logout: () => set({ isAuthenticated: false, role: 'utilisateur' }),
-}));
+  user: null,
+  accessToken: null,
+
+  setSession: ({ user, accessToken }) =>
+      set({
+        user,
+        accessToken: accessToken ?? null,
+      }),
+
+  logout: () =>
+      set({
+        user: null,
+        accessToken: null,
+      }),
+}))

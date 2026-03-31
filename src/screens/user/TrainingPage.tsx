@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { LinearGradient} from "react-native-svg";
-import { COLORS } from '../constants/colors';
-import { MOCK_TRAININGS, MOCK_DOCS } from "../constants/mockData2";
-import { Card, SectionTitle, ProgressBar, LogoMark} from "../constants/ui";
-import { ChevronRight, DownloadIcon } from '../components/icons';
+import { COLORS } from '../../constants/colors';
+import { MOCK_TRAININGS, MOCK_DOCS } from "../../constants/mockData";
+import { Card, SectionTitle, ProgressBar, LogoMark} from "../../constants/ui";
+import { ChevronRight, DownloadIcon } from '../../components/icons';
 
 const TrainingPage: React.FC = () => {
     const totalDone = MOCK_TRAININGS.reduce((acc, training) => acc + training.done, 0);

@@ -1,11 +1,13 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import AuthNavigator from './AuthNavigator';
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import RoleGate from './RoleGate'
 
-export default function AppNavigator() {
-  return (
-    <NavigationContainer>
-      <AuthNavigator />
-    </NavigationContainer>
-  );
+const AppNavigator = () => {
+    return (
+        <NavigationContainer>
+            <RoleGate />
+        </NavigationContainer>
+    )
 }
+
+export default AppNavigator

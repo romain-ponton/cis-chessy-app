@@ -6,10 +6,10 @@ import {
     TouchableOpacity,
     StyleSheet,
 } from 'react-native';
-import { COLORS } from '../constants/colors';
-import { MOCK_ALERTS } from '../constants/mockData2';
-import { Card, Badge, alertColor} from "../constants/ui";
-import type { Filter } from '../types/types';
+import { COLORS } from '../../constants/colors';
+import { MOCK_ALERTS } from '../../constants/mockData';
+import { Card, Badge, alertColor} from "../../constants/ui";
+import type { Filter } from '../../types/types';
 
 const FILTERS: Filter[] = [
     { id: 'all', label: 'Toutes' },

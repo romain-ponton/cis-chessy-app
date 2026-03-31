@@ -1,6 +1,6 @@
 import { PlanningItem } from '../types/planning';
-import { AppNotification } from '../types/notification';
-import { TrainingItem } from '../types/training';
+import { AppNotification } from '../types/notifications';
+import { TrainingItem } from '../types/trainning';
 
 export const MOCK_PLANNING: PlanningItem[] = [
   {

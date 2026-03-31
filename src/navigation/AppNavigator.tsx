@@ -1,11 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AuthNavigator from './AuthNavigator';
+import { View, Text } from 'react-native';
 
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <AuthNavigator />
+      <View>
+        <Text>Navigator placeholder</Text>
+      </View>
     </NavigationContainer>
   );
 }
